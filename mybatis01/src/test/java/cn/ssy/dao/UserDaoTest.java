@@ -4,7 +4,6 @@ import cn.ssy.pojo.User;
 import cn.ssy.utils.MybatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,11 +38,17 @@ public class UserDaoTest {
         System.out.println("请输入要查询的id");
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
-        User user = mapper.getUserById(1);
+        User user = mapper.getUserById(a);
         System.out.println(user);
        sc.close();
         sqlSession.close();
-
     }
-
+    @Test
+    public  void  deleteUserById(){
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Boolean flag = mapper.deleteUserById(2);
+        System.out.println(flag);
+        sqlSession.close();
+    }
 }

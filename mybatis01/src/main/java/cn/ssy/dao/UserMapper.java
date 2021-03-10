@@ -7,4 +7,6 @@ public interface UserMapper {
     List<User> getuserlist();
 
     User getUserById(int id);
+
+    boolean deleteUserById(int id);
 }
