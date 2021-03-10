@@ -12,13 +12,29 @@
     <select id="getUserById" parameterType="int" resultType="cn.ssy.pojo.User">
     select * from mybatis.user where id = #{id};
   </select>
+
     <delete id="deleteUserById" parameterType="int">
         delete  from mybatis.user where id = #{id};
     </delete>
+
     <insert id="addUser" parameterType="cn.ssy.pojo.User">
        insert into mybatis.user(id,name,pwd) VALUES (#{id},#{name},#{pwd});
     </insert>
+
+    <insert id="addUser2" parameterType="map">
+       insert into mybatis.user(id,name,pwd) VALUES (#{userid},#{username},#{password});
+    </insert>
+
     <update id="updateUser" parameterType="cn.ssy.pojo.User">
     update mybatis.user set name = #{name},pwd=#{pwd} where id=#{id};
     </update>
+
+    <update id="updateUser2" parameterType="map">
+    update mybatis.user set name = #{name},pwd=#{pwd} where id=#{userid};
+    </update>
+
+    <select id="Fuzzyquery" resultType="cn.ssy.pojo.User">
+        select * from user where name like "%"#{word}"%";
+    </select>
+
 </mapper>
