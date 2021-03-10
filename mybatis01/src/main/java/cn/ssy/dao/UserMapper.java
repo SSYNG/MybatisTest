@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface UserMapper {
     List<User> getuserlist();
+
+    User getUserById(int id);
 }
