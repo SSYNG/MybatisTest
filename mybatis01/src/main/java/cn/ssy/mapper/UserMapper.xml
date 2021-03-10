@@ -10,9 +10,15 @@
   </select>
 
     <select id="getUserById" parameterType="int" resultType="cn.ssy.pojo.User">
-    select * from mybatis.user where id = #{id}
+    select * from mybatis.user where id = #{id};
   </select>
     <delete id="deleteUserById" parameterType="int">
-        delete  from user where id = #{id}
+        delete  from mybatis.user where id = #{id};
     </delete>
+    <insert id="addUser" parameterType="cn.ssy.pojo.User">
+       insert into mybatis.user(id,name,pwd) VALUES (#{id},#{name},#{pwd});
+    </insert>
+    <update id="updateUser" parameterType="cn.ssy.pojo.User">
+    update mybatis.user set name = #{name},pwd=#{pwd} where id=#{id};
+    </update>
 </mapper>

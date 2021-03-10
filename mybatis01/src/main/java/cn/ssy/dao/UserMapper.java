@@ -9,4 +9,8 @@ public interface UserMapper {
     User getUserById(int id);
 
     boolean deleteUserById(int id);
+
+    boolean addUser(User user);
+
+    boolean updateUser(User user);
 }

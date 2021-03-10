@@ -33,22 +33,50 @@ public class UserDaoTest {
     }
     @Test
     public  void  getUserById(){
+        int a=0;
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         System.out.println("请输入要查询的id");
         Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt();
+        while (sc.hasNext()){
+            a = sc.nextInt();
+        }
         User user = mapper.getUserById(a);
         System.out.println(user);
-       sc.close();
+        sqlSession.commit();
+        sc.close();
         sqlSession.close();
     }
+    //增删改均需要提交事务
+    //删除
     @Test
     public  void  deleteUserById(){
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         Boolean flag = mapper.deleteUserById(2);
         System.out.println(flag);
+        sqlSession.commit();
         sqlSession.close();
     }
+    //新增用户
+    @Test
+    public  void  addUser(){
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Boolean flag = mapper.addUser(new User(4,"御坂莉亚","666"));
+        System.out.println(flag);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+    //更新用户
+    @Test
+    public void updateUser(){
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Boolean flag = mapper.updateUser(new User(1,"水卜樱","666"));
+        System.out.println(flag);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
 }
